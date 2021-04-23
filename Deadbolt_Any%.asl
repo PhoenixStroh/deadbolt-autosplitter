@@ -16,7 +16,7 @@ state("deadbolt_game")
 
 update
 {
-    print("InChair: " + current.inChair);
+    //print("InChair: " + current.inChair);
 }
 
 startup
@@ -45,7 +45,12 @@ start
 
 split
 {
-    if (vars.skippedFirst == false && current.levelNumber != old.levelNumber && current.levelNumber == 99){
+    if (current.levelNumber == 123 && current.inChair == 1)
+    {
+        return true;
+    }
+    if (vars.skippedFirst == false && current.levelNumber != old.levelNumber && current.levelNumber == 99)
+    {
         print("Skipped!");
         vars.skippedFirst = true;
     }
