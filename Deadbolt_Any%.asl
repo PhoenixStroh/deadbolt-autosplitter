@@ -31,6 +31,15 @@ shutdown
     timer.OnStart -= vars.timerStart;  
 }
 
+start
+{
+    //Will trigger prematurally when loading the game
+    if (current.gameTimer == 1)
+    {
+        return true;
+    }
+}
+
 split
 {
     if (vars.skippedFirst == false && current.levelNumber != old.levelNumber && current.levelNumber == 99){
