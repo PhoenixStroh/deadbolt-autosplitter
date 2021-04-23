@@ -16,7 +16,7 @@ state("deadbolt_game")
 
 update
 {
-    print("InChair: " + current.gameTimer);
+    print("InChair: " + current.inChair);
 }
 
 startup
