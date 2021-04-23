@@ -9,11 +9,14 @@ state("deadbolt_game")
     int endMission: 0x0A3C2C, 0x330;
 
     double gameTimer: 0x39B1E8, 0x4, 0x130;
+
+    //0:Not in anything 1:In either chair or picking up sniper rifle
+    double inChair: 0x39B1E8, 0x4, 0x540;
 }
 
 update
 {
-    print("Timer: " + current.gameTimer);
+    print("InChair: " + current.gameTimer);
 }
 
 startup
