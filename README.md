@@ -9,7 +9,7 @@ Currently there is only one autosplitter for the **Any% Category**. This autospl
 ---
 
 #### Any% Category
-This Split has a few caveats: 
+This Autosplitter has a few caveats: 
  - The starting split is slightly slower then what you can click. 
  - It will not split for the tutorial, so please do not include it as a split. 
  - I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values, but rather generates a new, completely different value each time. I'm not sure if this means that the value can be chance switch to the same value. 
