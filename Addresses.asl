@@ -8,7 +8,7 @@ state("deadbolt_game")
     double levelNumber: 0x39B1E8, 0x18, 0x9C8;
     
     //411:Home 412-Anything Else
-    int endMission: 0x0A3C2C, 0x330;
+    int isHome: 0x0A3C2C, 0x330;
 
     //The timer displayed in game, recorded in seconds
     //Does not reset between game sessions, only between loads themselves.
