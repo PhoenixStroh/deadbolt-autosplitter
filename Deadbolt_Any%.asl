@@ -1,28 +1,25 @@
+// ----------- NOTES ABOUT SPLIT --------------
+// This Split will/can break in a few ways
+// a.) It will split if the livesplit is running before you start the game
+// b.) If you have the tutorial as a split, it will not split for the tutorial.
+// c.) I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values,
+// but rather generates a new, completely different value each time. I'm not sure if this means that the value can be chance switch to the same value.
+
 state("deadbolt_game")
 {
-    //SplashMenu:125 Home:99 Tutorial:119 
-    //NoisyNeighbor:107 NewHigh:105 SmokeSignals:107 Puff:103 FollowHounds:127 Bogeyman:119 Vacancy:105 Supply&Demand:109 Roland:117
-    //NightOut:113 LuxInTenebris:129 BloodyMary:109 BottleService:121 Amber&Evelen:113 ALotToGive:117 SirStela:125 ForcedConvo:129 MadamStela:121
-    //OvernightShipping:119 StructurallySound:115 BarHopping:117 HorrowShow:125 TimurTinkerer:119 DriverThru:95 AsAGlass:97 Vall:117 Ibzan(a):115 Ibzan(b):123
+    //Used to identify the specific level currently running (some levels share ID's)
     double levelNumber: 0x39B1E8, 0x18, 0x9C8;
-    //411:Home 412-Anything Else
-    int endMission: 0x0A3C2C, 0x330;
 
+    //The timer displayed in game, recorded in seconds
     double gameTimer: 0x39B1E8, 0x4, 0x130;
 
-    //0:Not in anything 1:In either chair or picking up sniper rifle
-    double inChair: 0x39B1E8, 0x4, 0x540;
-
+    //The final chair the player enters, this value with change to a new value
     int endGameChair: 0x5A9320, 0x0, 0xAD8;
-}
-
-update
-{
-    //print("InChair: " + current.inChair);
 }
 
 startup
 {
+    //This will connect the method below to every time the time is started
     vars.timerStart = (EventHandler) ((s, e) =>
     {
         print("Start Timer");
@@ -47,15 +44,18 @@ start
 
 split
 {
+    //Split for End Game Chair
     if (current.levelNumber == 123 && current.endGameChair != old.endGameChair)
     {
         return true;
     }
+    //Skip the first split (the tutorial level)
     if (vars.skippedFirst == false && current.levelNumber != old.levelNumber && current.levelNumber == 99)
     {
         print("Skipped!");
         vars.skippedFirst = true;
     }
+    //Split when returning to home
     else if (current.levelNumber != old.levelNumber && current.levelNumber == 99)
     {
         print("At Home");
