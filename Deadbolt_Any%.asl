@@ -1,8 +1,7 @@
 // ----------- NOTES ABOUT SPLIT --------------
 // This Split will/can break in a few ways
-// a.) It will split if the livesplit is running before you start the game
-// b.) If you have the tutorial as a split, it will not split for the tutorial.
-// c.) I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values,
+// a.) If you have the tutorial as a split, it will not split for the tutorial.
+// b.) I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values,
 // but rather generates a new, completely different value each time. I'm not sure if this means that the value can be chance switch to the same value.
 
 state("deadbolt_game")
