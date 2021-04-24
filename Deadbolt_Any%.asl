@@ -41,6 +41,7 @@ shutdown
 start
 {
     if (vars.skippedFirstTimer == false){
+        vars.skippedFirstTimer = true;
         print("Skipped Timer");
     }
     //Will trigger prematurally when loading the game
