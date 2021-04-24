@@ -7,6 +7,13 @@ state("deadbolt_game")
     double levelNumber: 0x39B1E8, 0x18, 0x9C8;
     //411:Home 412-Anything Else
     int endMission: 0x0A3C2C, 0x330;
+
+    double gameTimer: 0x39B1E8, 0x4, 0x130;
+}
+
+update
+{
+    print("Timer: " + current.gameTimer);
 }
 
 startup
@@ -22,6 +29,15 @@ startup
 shutdown
 {
     timer.OnStart -= vars.timerStart;  
+}
+
+start
+{
+    //Will trigger prematurally when loading the game
+    if (current.gameTimer == 1)
+    {
+        return true;
+    }
 }
 
 split
