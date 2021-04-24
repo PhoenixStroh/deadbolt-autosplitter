@@ -1,8 +1,9 @@
 // ----------- NOTES ABOUT SPLIT --------------
 // This Autsplitter has a few caveats:
-// a.) The starting split is slightly slower then what you can click.
-// b.) It will not split for the tutorial, so please do not include it as a split.
-// c.) I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values,
+// a.) The splits are based on when you return to the home apartment. Because of this, if you exit the level instead of completing it, it will still split.
+// b.) The starting split is slightly slower then what you can click.
+// c.) It will not split for the tutorial, so please do not include it as a split.
+// d.) I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values,
 // but rather generates a new, completely different value each time. I'm not sure if this means that the value can be chance switch to the same value.
 
 state("deadbolt_game")
