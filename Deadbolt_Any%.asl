@@ -17,13 +17,18 @@ state("deadbolt_game")
     int endGameChair: 0x5A9320, 0x0, 0xAD8;
 }
 
+init
+{
+    vars.skippedFirstTimer = false;
+}
+
 startup
 {
     //This will connect the method below to every time the time is started
     vars.timerStart = (EventHandler) ((s, e) =>
     {
         print("Start Timer");
-        vars.skippedFirst = false;
+        vars.skippedFirstTutorial = false;
     });
     timer.OnStart += vars.timerStart;
 }
@@ -35,8 +40,11 @@ shutdown
 
 start
 {
+    if (vars.skippedFirstTimer == false){
+        print("Skipped Timer");
+    }
     //Will trigger prematurally when loading the game
-    if (current.gameTimer == 1)
+    else if (current.gameTimer == 0)
     {
         return true;
     }
@@ -50,10 +58,10 @@ split
         return true;
     }
     //Skip the first split (the tutorial level)
-    if (vars.skippedFirst == false && current.levelNumber != old.levelNumber && current.levelNumber == 99)
+    if (vars.skippedFirstTutorial == false && current.levelNumber != old.levelNumber && current.levelNumber == 99)
     {
-        print("Skipped!");
-        vars.skippedFirst = true;
+        print("Skipped Tutorial Split");
+        vars.skippedFirstTutorial = true;
     }
     //Split when returning to home
     else if (current.levelNumber != old.levelNumber && current.levelNumber == 99)
