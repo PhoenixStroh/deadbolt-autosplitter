@@ -44,7 +44,10 @@ start
         vars.skippedFirstTimer = true;
         print("Skipped Timer");
     }
-    //Will trigger prematurally when loading the game
+    else if (vars.skippedFirstTimer == false)
+    {
+        print("Delayed Skipping Timer");
+    }
     else if (current.gameTimer == 0)
     {
         return true;
