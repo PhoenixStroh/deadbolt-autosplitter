@@ -40,7 +40,7 @@ shutdown
 
 start
 {
-    if (vars.skippedFirstTimer == false){
+    if (vars.skippedFirstTimer == false && current.gameTimer != 0){
         vars.skippedFirstTimer = true;
         print("Skipped Timer");
     }
