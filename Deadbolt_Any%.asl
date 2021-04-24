@@ -12,6 +12,8 @@ state("deadbolt_game")
 
     //0:Not in anything 1:In either chair or picking up sniper rifle
     double inChair: 0x39B1E8, 0x4, 0x540;
+
+    int endGameChair: 0x5A9320, 0x0, 0xAD8;
 }
 
 update
@@ -45,7 +47,7 @@ start
 
 split
 {
-    if (current.levelNumber == 123 && current.inChair == 1)
+    if (current.levelNumber == 123 && current.endGameChair != old.endGameChair)
     {
         return true;
     }
