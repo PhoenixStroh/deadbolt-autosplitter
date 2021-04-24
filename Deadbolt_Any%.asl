@@ -1,5 +1,5 @@
 // ----------- NOTES ABOUT SPLIT --------------
-// This Split has a few caveats:
+// This Autsplitter has a few caveats:
 // a.) The starting split is slightly slower then what you can click.
 // b.) It will not split for the tutorial, so please do not include it as a split.
 // c.) I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values,
