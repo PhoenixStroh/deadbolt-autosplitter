@@ -21,5 +21,6 @@ state("deadbolt_game")
     //Not entirely sure if it always goes to a new value or not.
     int endGameChair: 0x5A9320, 0x0, 0xAD8;
 
+    //0:Mission is not completed yet 1:Mission has been completed
     double missionCompleted: 0x39B1E8, 0x4, 0x410;
 }
