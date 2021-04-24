@@ -40,6 +40,7 @@ shutdown
 
 start
 {
+    //Prevent the timer from starting if the game is loading. If not, it can start freely
     if (vars.skippedFirstTimer == false && current.gameTimer != 0){
         vars.skippedFirstTimer = true;
         print("Skipped Timer");
