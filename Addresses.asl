@@ -20,4 +20,6 @@ state("deadbolt_game")
     //The final chair the player enters, this value with change to a new value
     //Not entirely sure if it always goes to a new value or not.
     int endGameChair: 0x5A9320, 0x0, 0xAD8;
+
+    double missionCompleted: 0x39B1E8, 0x4, 0x410;
 }
