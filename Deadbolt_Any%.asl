@@ -1,7 +1,8 @@
 // ----------- NOTES ABOUT SPLIT --------------
-// This Split will/can break in a few ways
-// a.) If you have the tutorial as a split, it will not split for the tutorial.
-// b.) I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values,
+// This Split has a few caveats:
+// a.) The starting split is slightly slower then what you can click.
+// b.) It will not split for the tutorial, so please do not include it as a split.
+// c.) I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values,
 // but rather generates a new, completely different value each time. I'm not sure if this means that the value can be chance switch to the same value.
 
 state("deadbolt_game")
