@@ -1,10 +1,7 @@
 // ----------- NOTES ABOUT SPLIT --------------
 // This Autsplitter has a few caveats:
-// a.) The splits are based on when you return to the home apartment. Because of this, if you exit the level instead of completing it, it will still split.
-// b.) The starting split is slightly slower then what you can click.
-// c.) It will not split for the tutorial, so please do not include it as a split.
-// d.) I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values,
-// but rather generates a new, completely different value each time. I'm not sure if this means that the value can be chance switch to the same value.
+// a.) The starting split is slightly slower then what you can click.
+// b.) If you exit the level while the level's mission has been completed, it will split.
 
 state("deadbolt_game")
 {
@@ -16,11 +13,15 @@ state("deadbolt_game")
 
     //The final chair the player enters, this value with change to a new value
     int endGameChair: 0x5A9320, 0x0, 0xAD8;
+
+    //0:Mission is not completed yet 1:Mission has been completed
+    double missionCompleted: 0x39B1E8, 0x4, 0x410;
 }
 
 init
 {
     vars.skippedFirstTimer = false;
+    vars.missionCompletedHolder = false;
 }
 
 startup
@@ -28,6 +29,8 @@ startup
     //Add Settings for Player
     settings.Add("skipTutorial", true, "Skip Tutorial");
     settings.SetToolTip("skipTutorial", "If enabled, will split when exiting the tutorial.");
+    settings.Add("completeMissionSafety", true, "Complete Mission Safetyguard");
+    settings.SetToolTip("completeMissionSafety", "If enabled, will not split if the current mission has not been completed");
     //settings.Add("autoReset", false, "Auto Reset");
     //settings.SetToolTip("autoReset", "If enabled, will automatically reset when exiting to Main Menu.");
 
@@ -64,6 +67,14 @@ start
 
 split
 {
+    if (current.missionCompleted == 1 && vars.missionCompletedHolder == false)
+    {
+        vars.missionCompletedHolder = true;
+    }
+    else if (settings["completeMissionSafety"] == false){
+        vars.missionCompletedHolder = true;
+    }
+
     //Split for End Game Chair
     if (current.levelNumber == 123 && current.endGameChair != old.endGameChair)
     {
@@ -76,9 +87,10 @@ split
         vars.skippedFirstTutorial = true;
     }
     //Split when returning to home
-    else if (current.levelNumber != old.levelNumber && current.levelNumber == 99)
+    else if (vars.missionCompletedHolder == true && current.levelNumber != old.levelNumber && current.levelNumber == 99)
     {
         print("At Home");
+        vars.missionCompletedHolder = false;
         return true;
     }
 }
