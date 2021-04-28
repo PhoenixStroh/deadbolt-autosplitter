@@ -14,7 +14,7 @@ state("deadbolt_game")
     //The final chair the player enters, this value with change to a new value
     int endGameChair: 0x5A9320, 0x0, 0xAD8;
 
-    //0:Mission is not completed yet 1:Mission has been completed
+    //The mission requirement for each level, between 0 or 1
     double missionCompleted: 0x39B1E8, 0x4, 0x410;
 }
 
