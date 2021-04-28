@@ -1,16 +1,20 @@
 # deadbolt-autosplitter
-An unofficial attempt at creating an autosplitter for the game DEADBOLT. 
+An unofficial autosplitter for the game DEADBOLT. 
 
 ---
 
-## Uses
-Currently there is only one autosplitter for the **Any% Category**. This autosplitter can only detect when you return to home base, and will accidentally split if you exit a level pre-maturally.
+### Uses
+Currently there is only one autosplitter for the **Any% Category**.
 
 ---
 
-#### Any% Category
-This Autosplitter has a few caveats: 
- - The splits are based on when you return to the home apartment. Because of this, if you exit the level instead of completing it, it will still split.
+### Any% Category
+#####This Autosplitter has a few caveats: 
  - The starting split is slightly slower then what you can click. 
- - It will not split for the tutorial, so please do not include it as a split. 
- - I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values, but rather generates a new, completely different value each time. I'm not sure if this means that the value can be chance switch to the same value. 
+ - If you exit the level while the level's mission has been completed, it will split. 
+
+#####Settings: 
+ - *Skip Tutorial* 
+   - If enabled, will avoid splitting when exiting the tutorial. 
+ - *Complete Mission Safetyguard* 
+   - If enabled, will not split if the current mission has not been completed. 

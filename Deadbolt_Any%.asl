@@ -28,9 +28,9 @@ startup
 {
     //Add Settings for Player
     settings.Add("skipTutorial", true, "Skip Tutorial");
-    settings.SetToolTip("skipTutorial", "If enabled, will split when exiting the tutorial.");
+    settings.SetToolTip("skipTutorial", "If enabled, will avoid splitting when exiting the tutorial.");
     settings.Add("completeMissionSafety", true, "Complete Mission Safetyguard");
-    settings.SetToolTip("completeMissionSafety", "If enabled, will not split if the current mission has not been completed");
+    settings.SetToolTip("completeMissionSafety", "If enabled, will not split if the current mission has not been completed.");
     //settings.Add("autoReset", false, "Auto Reset");
     //settings.SetToolTip("autoReset", "If enabled, will automatically reset when exiting to Main Menu.");
 
