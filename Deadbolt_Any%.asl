@@ -67,6 +67,7 @@ start
 
 split
 {
+    //Will updated missionCompleted when you return home
     if (current.missionCompleted == 1 && vars.missionCompletedHolder == false)
     {
         vars.missionCompletedHolder = true;
