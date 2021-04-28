@@ -70,7 +70,7 @@ split
         return true;
     }
     //Skip the first split (the tutorial level)
-    if (vars.skippedFirstTutorial == false && current.levelNumber != old.levelNumber && current.levelNumber == 99)
+    if (settings["skipTutorial"] == true && vars.skippedFirstTutorial == false && current.levelNumber != old.levelNumber && current.levelNumber == 99)
     {
         print("Skipped Tutorial Split");
         vars.skippedFirstTutorial = true;
