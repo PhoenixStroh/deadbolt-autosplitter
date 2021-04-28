@@ -25,6 +25,12 @@ init
 
 startup
 {
+    //Add Settings for Player
+    settings.Add("skipTutorial", true, "Skip Tutorial");
+    settings.SetToolTip("skipTutorial", "If enabled, will split when exiting the tutorial.");
+    //settings.Add("autoReset", false, "Auto Reset");
+    //settings.SetToolTip("autoReset", "If enabled, will automatically reset when exiting to Main Menu.");
+
     //This will connect the method below to every time the time is started
     vars.timerStart = (EventHandler) ((s, e) =>
     {
