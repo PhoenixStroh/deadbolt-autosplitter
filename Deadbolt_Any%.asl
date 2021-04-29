@@ -1,6 +1,6 @@
 // ----------- NOTES ABOUT SPLIT --------------
 // This Autsplitter has a few caveats:
-// a.) The starting split is slightly slower then what you can click.
+// a.) The starting split is slightly slower than what you can click.
 // b.) If you exit the level while the level's mission has been completed, it will split.
 
 state("deadbolt_game")

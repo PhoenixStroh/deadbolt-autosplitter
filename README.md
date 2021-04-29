@@ -10,7 +10,7 @@ Currently there is only one autosplitter for the **Any% Category**.
 
 ### Any% Category
 #####This Autosplitter has a few caveats: 
- - The starting split is slightly slower then what you can click. 
+ - The starting split is slightly slower than what you can click. 
  - If you exit the level while the level's mission has been completed, it will split. 
 
 #####Settings: 
