@@ -29,11 +29,6 @@ init
 
 startup
 {
-    //Add Settings for Player
-    settings.Add("skipTutorial", true, "Skip Tutorial");
-    settings.SetToolTip("skipTutorial", "If enabled, will avoid splitting when exiting the tutorial.");
-    settings.Add("completeMissionSafety", true, "Complete Mission Safetyguard");
-    settings.SetToolTip("completeMissionSafety", "If enabled, will not split if the current mission has not been completed.");
     //settings.Add("autoReset", false, "Auto Reset");
     //settings.SetToolTip("autoReset", "If enabled, will automatically reset when exiting to Main Menu.");
 
@@ -70,31 +65,14 @@ start
 
 split
 {
-    //Will updated missionCompleted when you return home
-    if (current.missionCompleted == 1 && vars.missionCompletedHolder == false)
-    {
-        vars.missionCompletedHolder = true;
-    }
-    else if (settings["completeMissionSafety"] == false){
-        vars.missionCompletedHolder = true;
-    }
 
     //Split for End Game Chair
     if (current.levelNumber == 123 && current.endGameChair != old.endGameChair)
     {
         return true;
     }
-    //Skip the first split (the tutorial level)
-    if (settings["skipTutorial"] == true && vars.skippedFirstTutorial == false && current.levelNumber != old.levelNumber && current.levelNumber == 99)
+    if (current.isScoreboard == 1 && old.isScoreboard == 0)
     {
-        print("Skipped Tutorial Split");
-        vars.skippedFirstTutorial = true;
-    }
-    //Split when returning to home
-    else if (vars.missionCompletedHolder == true && current.levelNumber != old.levelNumber && current.levelNumber == 99)
-    {
-        print("At Home");
-        vars.missionCompletedHolder = false;
         return true;
     }
 }
