@@ -16,6 +16,9 @@ state("deadbolt_game")
 
     //The mission requirement for each level, between 0 or 1
     double missionCompleted: 0x39B1E8, 0x4, 0x410;
+
+    //0:Not in scoreboard 1:In scoreboard
+    int isScoreboard: 0x39AF04, 0x0, 0xB00, 0xC, 0xB4;
 }
 
 init
