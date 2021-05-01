@@ -7,9 +7,6 @@ state("deadbolt_game")
     //Used to identify the specific level currently running (some levels share ID's)
     double levelNumber: 0x39B1E8, 0x18, 0x9C8;
 
-    //The timer displayed in game, recorded in seconds
-    double gameTimer: 0x39B1E8, 0x4, 0x130;
-
     //The final chair the player enters, this value with change to a new value
     int endGameChair: 0x5A9320, 0x0, 0xAD8;
 
@@ -18,47 +15,29 @@ state("deadbolt_game")
 
     //0:Not in scoreboard 1:In scoreboard
     int isScoreboard: 0x39AF04, 0x0, 0xB00, 0xC, 0xB4;
+
+    //Not tested
+    double difficultySelect: 0x34E464, 0x520, 0xC, 0x4, 0x23E0;
+
+    //Not tested
+    double fadeout: 0x59D34C, 0x84, 0x4, 0x1BE0;
 }
 
-init
+update
 {
-    vars.skippedFirstTimer = false;
+    print("Difficulty Select: " + current.difficultySelect);
+    print("Fadeout: " + current.fadeout);
 }
 
 startup
 {
     //settings.Add("autoReset", false, "Auto Reset");
     //settings.SetToolTip("autoReset", "If enabled, will automatically reset when exiting to Main Menu.");
-
-    //This will connect the method below to every time the time is started
-    vars.timerStart = (EventHandler) ((s, e) =>
-    {
-        print("Start Timer");
-        vars.skippedFirstTutorial = false;
-    });
-    timer.OnStart += vars.timerStart;
-}
-
-shutdown
-{
-    timer.OnStart -= vars.timerStart;  
 }
 
 start
 {
-    //Prevent the timer from starting if the game is loading. If not, it can start freely
-    if (vars.skippedFirstTimer == false && current.gameTimer != 0){
-        vars.skippedFirstTimer = true;
-        print("Skipped Timer");
-    }
-    else if (vars.skippedFirstTimer == false)
-    {
-        print("Delayed Skipping Timer");
-    }
-    else if (current.gameTimer == 0)
-    {
-        return true;
-    }
+
 }
 
 split
