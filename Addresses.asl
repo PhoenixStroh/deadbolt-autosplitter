@@ -33,6 +33,9 @@ state("deadbolt_game")
     //Not tested
     double difficultySelect: 0x34E464, 0x520, 0xC, 0x4, 0x23E0;
 
+    //Not tested
+    double fadeout: 0x59D34C, 0x84, 0x4, 0x1BE0;
+
     //Discoverable Addresses
 
     
