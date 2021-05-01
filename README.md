@@ -9,7 +9,7 @@ Currently there is only one autosplitter for the **Any% Category**. This is an A
 ---
 
 ### Any% Category
-This autosplitter has a Start, and two different split options:
+This autosplitter only works for **Version 1.0.2**, and has a Start, and two different split options:
 #### Start
  - When the player clicks on either **"Normal"** or **"Hard"** in the difficulty options, **start.**
 #### Splits

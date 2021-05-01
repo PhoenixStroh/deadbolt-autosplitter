@@ -1,4 +1,4 @@
-state("deadbolt_game")
+state("deadbolt_game","v1.0.2")
 {
     //Used to identify the specific level currently running (some levels share ID's)
     double levelNumber: 0x39B1E8, 0x18, 0x9C8;
@@ -11,6 +11,22 @@ state("deadbolt_game")
 
     //Which choice you click on in the "New Game" tab
     double choseDifficulty: 0x34E464, 0x520, 0xC, 0x4, 0x23F0;
+}
+
+init
+{
+    if (modules.First().ModuleMemorySize == 6234112)
+    {
+        version = "v1.0.2";       
+    }
+}
+
+update
+{
+    if (version == "")
+    {
+        return false;
+    }
 }
 
 startup
