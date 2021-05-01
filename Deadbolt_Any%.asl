@@ -16,17 +16,7 @@ state("deadbolt_game")
     //0:Not in scoreboard 1:In scoreboard
     int isScoreboard: 0x39AF04, 0x0, 0xB00, 0xC, 0xB4;
 
-    //Not tested
-    double difficultySelect: 0x34E464, 0x520, 0xC, 0x4, 0x23E0;
-
-    //Not tested
-    double fadeout: 0x59D34C, 0x84, 0x4, 0x1BE0;
-}
-
-update
-{
-    print("Difficulty Select: " + current.difficultySelect);
-    print("Fadeout: " + current.fadeout);
+    double choseDifficulty: 0x34E464, 0x520, 0xC, 0x4, 0x23F0;
 }
 
 startup
@@ -37,7 +27,10 @@ startup
 
 start
 {
-
+    if (old.choseDifficulty == -1 && (current.choseDifficulty == 0 || current.choseDifficulty == 1))
+    {
+        return true;
+    }
 }
 
 split
