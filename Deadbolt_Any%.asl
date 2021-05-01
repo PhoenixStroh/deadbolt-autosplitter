@@ -17,7 +17,6 @@ init
 {
     if (modules.First().ModuleMemorySize == 6234112)
     {
-        print("FOUND VERSION: " + modules.First().ModuleMemorySize);
         version = "v1.0.2";       
     }
 }
@@ -26,7 +25,6 @@ update
 {
     if (version == "")
     {
-        print("FAILED TO FIND VERSION: " + modules.First().ModuleMemorySize);
         return false;
     }
 }
