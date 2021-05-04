@@ -10,7 +10,7 @@ state("deadbolt_game","v1.0.2")
     int isScoreboard: 0x39AF04, 0x0, 0xB00, 0xC, 0xB4;
 
     //Which choice you click on in the "New Game" tab
-    double choseDifficulty: 0x34E464, 0x520, 0xC, 0x4, 0x23F0;
+    double choseDifficulty: 0x59D374, 0x10, 0x84, 0x4, 0x23F0;
 }
 
 init
