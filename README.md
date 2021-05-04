@@ -1,15 +1,19 @@
 # deadbolt-autosplitter
-An unofficial attempt at creating an autosplitter for the game DEADBOLT. 
+An unofficial autosplitter for the game DEADBOLT. 
 
 ---
 
-## Uses
-Currently there is only one autosplitter for the **Any% Category**. This autosplitter can only detect when you return to home base, and will accidentally split if you exit a level pre-maturally.
+### Uses
+Currently there is only one autosplitter for the **Any% Category**. This is an ASL file, and meant to be used with LiveSplit inside "Layout".
 
 ---
 
-#### Any% Category
-This Autosplitter has a few caveats: 
- - The starting split is slightly slower then what you can click. 
- - It will not split for the tutorial, so please do not include it as a split. 
- - I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values, but rather generates a new, completely different value each time. I'm not sure if this means that the value can be chance switch to the same value. 
+### Any% Category
+This autosplitter only works for **Version 1.0.2**, and has a Start, and two different split options:
+#### Start
+ - When the player clicks on either **"Normal"** or **"Hard"** in the difficulty options, **start.**
+#### Splits
+ - **Scoreboard Split:** When the player finishes a level and the scoreboard is displayed, **split.**
+ - **LastChair Split:** When the player defeats Ibzan and sits down on the last chair, **split.**
+#### Options
+ - The player can choose to disable **Scoreboard Splits**, **LastChair Splits** or **Both**. These settings can be found inside Layout for LiveSplit.

@@ -1,55 +1,46 @@
-// ----------- NOTES ABOUT SPLIT --------------
-// This Autsplitter has a few caveats:
-// a.) The starting split is slightly slower then what you can click.
-// b.) It will not split for the tutorial, so please do not include it as a split.
-// c.) I cannot guarentee that it will split for the last chair given that the address used doesn't switch between two values,
-// but rather generates a new, completely different value each time. I'm not sure if this means that the value can be chance switch to the same value.
-
-state("deadbolt_game")
+state("deadbolt_game","v1.0.2")
 {
     //Used to identify the specific level currently running (some levels share ID's)
     double levelNumber: 0x39B1E8, 0x18, 0x9C8;
 
-    //The timer displayed in game, recorded in seconds
-    double gameTimer: 0x39B1E8, 0x4, 0x130;
-
     //The final chair the player enters, this value with change to a new value
     int endGameChair: 0x5A9320, 0x0, 0xAD8;
+
+    //When the scoreboard is open
+    int isScoreboard: 0x39AF04, 0x0, 0xB00, 0xC, 0xB4;
+
+    //Which choice you click on in the "New Game" tab
+    double choseDifficulty: 0x59D374, 0x10, 0x84, 0x4, 0x23F0;
 }
 
 init
 {
-    vars.skippedFirstTimer = false;
+    if (modules.First().ModuleMemorySize == 6234112)
+    {
+        version = "v1.0.2";       
+    }
+}
+
+update
+{
+    if (version == "")
+    {
+        return false;
+    }
 }
 
 startup
 {
-    //This will connect the method below to every time the time is started
-    vars.timerStart = (EventHandler) ((s, e) =>
-    {
-        print("Start Timer");
-        vars.skippedFirstTutorial = false;
-    });
-    timer.OnStart += vars.timerStart;
-}
-
-shutdown
-{
-    timer.OnStart -= vars.timerStart;  
+    settings.Add("splitScoreboard", true, "Split on Scoreboard");
+    settings.SetToolTip("splitScoreboard", "If enabled, will split every time the scoreboard appears.");
+    settings.Add("splitLastChair", true, "Split on Last Chair");
+    settings.SetToolTip("splitLastChair", "If enabled, will split after sitting on the final chair.");
 }
 
 start
 {
-    //Prevent the timer from starting if the game is loading. If not, it can start freely
-    if (vars.skippedFirstTimer == false && current.gameTimer != 0){
-        vars.skippedFirstTimer = true;
-        print("Skipped Timer");
-    }
-    else if (vars.skippedFirstTimer == false)
-    {
-        print("Delayed Skipping Timer");
-    }
-    else if (current.gameTimer == 0)
+    //If you are in the "New Game" tab, and you click on either normal or hard mode
+    if (old.choseDifficulty == -1 && (current.choseDifficulty == 0 || current.choseDifficulty == 1))
     {
         return true;
     }
@@ -57,21 +48,15 @@ start
 
 split
 {
+
     //Split for End Game Chair
-    if (current.levelNumber == 123 && current.endGameChair != old.endGameChair)
+    if (settings["splitLastChair"] && current.levelNumber == 123 && current.endGameChair != old.endGameChair)
     {
         return true;
     }
-    //Skip the first split (the tutorial level)
-    if (vars.skippedFirstTutorial == false && current.levelNumber != old.levelNumber && current.levelNumber == 99)
+    //Split for Scoreboard
+    if (settings["splitScoreboard"] && current.isScoreboard == 1 && old.isScoreboard == 0)
     {
-        print("Skipped Tutorial Split");
-        vars.skippedFirstTutorial = true;
-    }
-    //Split when returning to home
-    else if (current.levelNumber != old.levelNumber && current.levelNumber == 99)
-    {
-        print("At Home");
         return true;
     }
 }

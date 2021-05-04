@@ -8,7 +8,7 @@ state("deadbolt_game")
     double levelNumber: 0x39B1E8, 0x18, 0x9C8;
     
     //411:Home 412-Anything Else
-    int endMission: 0x0A3C2C, 0x330;
+    int isHome: 0x0A3C2C, 0x330;
 
     //The timer displayed in game, recorded in seconds
     //Does not reset between game sessions, only between loads themselves.
@@ -20,4 +20,19 @@ state("deadbolt_game")
     //The final chair the player enters, this value with change to a new value
     //Not entirely sure if it always goes to a new value or not.
     int endGameChair: 0x5A9320, 0x0, 0xAD8;
+
+    //0:Mission is not completed yet 1:Mission has been completed
+    double missionCompleted: 0x39B1E8, 0x4, 0x410;
+
+    //0:Not in scoreboard 1:In scoreboard
+    int isScoreboard: 0x39AF04, 0x0, 0xB00, 0xC, 0xB4;
+
+    //-1:When the "Choose Difficulty Options" is open 0:Normal Mode/Null value 1:Hard Mode 2: Back button
+    double difficultyChosen: 0x39B1E8, 0x4, 0x70;
+
+    //0:Normal Mode/Null value 1:Hard Mode 2: Back button
+    double difficultySelect: 0x34E464, 0x520, 0xC, 0x4, 0x23E0;
+
+    //Will detect every fadeout in the game. Values range from -5 (default, no fade) 0 (pause menu fade, halfway) 0.5 (full fade) 1.5 (?)
+    double fadeout: 0x59D34C, 0x84, 0x4, 0x1BE0;
 }
