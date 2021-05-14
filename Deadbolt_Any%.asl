@@ -3,6 +3,9 @@ state("deadbolt_game","v1.0.2")
     //0:rInit 1:rm_logo 2:rm_main 3:rm_load 4:rm_ng 5:rm_load_custom 6:rm_mission 7:rm_apt 8:rm_credits 9:rm_dock 10:rm_stats 11:rm_pause 12:rm_ingame
     int SceneIndex : 0x59D310;
 
+    
+    double missionIndex: 0x39B1E8, 0x18, 0x578;
+
     //The level index 1-9, within each "region"
     double levelIndex: 0x39B1E8, 0x18, 0xA18;
 
@@ -52,8 +55,12 @@ start
 split
 {
 
-    //Split for End Game Chair
-    if (settings["splitLastChair"] && current.SceneIndex == 12 && current.levelIndex == 9 && current.playerSittingOrSniping == 1 && old.playerSittingOrSniping == 0)
+    //Split for End Game Chair if
+    //In a mission,
+    //In level 9,
+    //Completed the mission,
+    //Sitting down in the chair for the first time
+    if (settings["splitLastChair"] && current.SceneIndex == 12 && current.levelIndex == 9 && current.missionIndex == -1 && current.playerSittingOrSniping == 1 && old.playerSittingOrSniping == 0)
     {
         return true;
     }
