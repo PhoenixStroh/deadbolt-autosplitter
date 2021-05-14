@@ -1,10 +1,13 @@
 state("deadbolt_game","v1.0.2")
 {
-    //Used to identify the specific level currently running (some levels share ID's)
-    double levelNumber: 0x39B1E8, 0x18, 0x9C8;
+    //0:rInit 1:rm_logo 2:rm_main 3:rm_load 4:rm_ng 5:rm_load_custom 6:rm_mission 7:rm_apt 8:rm_credits 9:rm_dock 10:rm_stats 11:rm_pause 12:rm_ingame
+    int SceneIndex : 0x59D310;
 
-    //The final chair the player enters, this value with change to a new value
-    int endGameChair: 0x5A9320, 0x0, 0xAD8;
+    //The level index 1-9, within each "region"
+    double levelIndex: 0x39B1E8, 0x18, 0xA18;
+
+    //The player is in animation for the chair, and the sniper rifle
+    double playerSittingOrSniping: 0x39B1E8, 0x4, 0x540;
 
     //When the scoreboard is open
     int isScoreboard: 0x39AF04, 0x0, 0xB00, 0xC, 0xB4;
@@ -50,7 +53,7 @@ split
 {
 
     //Split for End Game Chair
-    if (settings["splitLastChair"] && current.levelNumber == 123 && current.endGameChair != old.endGameChair)
+    if (settings["splitLastChair"] && current.SceneIndex == 12 && current.levelIndex == 9 && current.playerSittingOrSniping == 1 && old.playerSittingOrSniping == 0)
     {
         return true;
     }
