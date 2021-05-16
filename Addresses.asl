@@ -33,6 +33,6 @@ state("deadbolt_game")
     //0:Normal Mode/Null value 1:Hard Mode 2: Back button
     double difficultySelect: 0x34E464, 0x520, 0xC, 0x4, 0x23E0;
 
-    //Will detect every fadeout in the game. Values range from -5 (default, no fade) 0 (pause menu fade, halfway) 0.5 (full fade) 1.5 (?)
+    //Will detect every fadeout in the game. Values range from -0.5 (default, no fade) 0 (pause menu fade, halfway) 0.5 (full fade) 1.5 (?)
     double fadeout: 0x59D34C, 0x84, 0x4, 0x1BE0;
 }
